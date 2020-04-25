@@ -46,6 +46,10 @@
 	align-self: center;
 }
 
+.list > .product-list > .product-card > .product-info {
+	margin-left: 1em;
+}
+
 .list > .product-list > .product-card img {
 	height: 7em;
 	width: auto;

@@ -5,10 +5,11 @@ const Content = (props) => {
   const {
     children,
     center,
+    ...rest
   } = props;
-
+  const className= `pretty-content ${!!center ? 'center' : ''}`
   return (
-    <div className={`pretty-content ${center ? "center" : ''}`} {...props}>
+    <div className={className} {...rest}>
       {children}
     </div>
   )

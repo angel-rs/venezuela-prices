@@ -1,4 +1,5 @@
 import cheerio from 'cheerio';
+import { Config } from 'src/config'
 
 const formatRedemercaData = (pageHTML) => {
 	const $ = cheerio.load(pageHTML);
@@ -16,7 +17,7 @@ const formatRedemercaData = (pageHTML) => {
 }
 
 export const scrapRedemerca = async () => {
-	const url = "https://crossorigin.me/https://www.redemerca.com/Productos/Listado"
+	const url = `${Config.proxy}https://www.redemerca.com/Productos/Listado`
 	const data = await fetch(url)
 	const products = formatRedemercaData(data);
 	return products

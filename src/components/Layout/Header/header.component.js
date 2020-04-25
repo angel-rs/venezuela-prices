@@ -31,7 +31,7 @@ const Header = (props) => {
 						<span role="img" aria-label="venezuela">
 							🇻🇪
 						</span>
-						{' '}venezuela-prices
+						{' '}product-prices
 					</Text>
           <Badge variant="subtle" variantColor="blue" style={{ height: 'fit-content', margin: 'auto' }}>
             {Config.version}

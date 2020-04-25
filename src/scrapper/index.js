@@ -3,9 +3,9 @@ import { scrapBodegon } from './bodegon'
 
 export const scrap = async () => {
 	const response = await Promise.all([
-		scrapBodegon(),
+		// scrapBodegon(),
 		scrapRedemerca(),
 	])
 
-	console.log(response)
+	return response;
 }

@@ -8,6 +8,7 @@ import './style.css'
 
 export const Home = () => {
 	const [products, setProducts] = useState([...Array(29)]);
+	const [isLoading, setIsLoading] = useState(true)
 	const [layout, setLayout] = useState(localStorage.getItem('layout') || 'grid')
 	const [isSearching, setIsSearching] = useState(false)
 	const [search, setSearch] = useState('')
@@ -22,21 +23,24 @@ export const Home = () => {
 		}
 	}
 
-	// useEffect(() => {
-	// 	scrap().then((products) => {
-	// 		setProducts(products)
-	// 	})
-	// }, [])
+	useEffect(() => {
+		scrap().then((products) => {
+			console.log(products)
+			setProducts(products)
+			setIsLoading(false)
+		}).catch(e => setIsLoading(false))
+	}, [])
 
 	const headerProps = {
 		layout,
 		toggleLayout,
 	}
 
-	if (!products.length) {
+	if (isLoading) {
 		return (
-			<Layout center style={{ flexDirection: 'column' }} headerProps={headerProps}>
+			<Layout center={true} style={{ flexDirection: 'column' }} headerProps={headerProps}>
 				<Spinner />
+				<br />
 				<Text>
 					Cargando productos...
 				</Text>

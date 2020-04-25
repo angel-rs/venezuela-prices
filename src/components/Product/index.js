@@ -21,7 +21,7 @@ export const Product = props => {
 
   return (
     <Box className="product-card" borderWidth="1px">
-      <Image src={property.imageUrl} alt={property.imageAlt} />
+      <Image src={property.imageUrl} alt={property.imageAlt} width="100%" height="100%" />
 
       <Box className="product-info">
         <Box
