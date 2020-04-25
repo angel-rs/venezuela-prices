@@ -1,3 +1,5 @@
+import cheerio from 'cheerio';
+
 const formatRedemercaData = (pageHTML) => {
 	const $ = cheerio.load(pageHTML);
 
@@ -17,13 +19,13 @@ const formatRedemercaData = (pageHTML) => {
 	}))
 }
 
-const getRedemercaData = async () => {
+export const scrapBodegon = async () => {
 	const data = [];
 	let page = 1;
 	let shouldScrap = true;
 
 	while (shouldScrap) {
-		const url = 'https://bodegonline.net/shop/page/PAGE_NUMBER/?per_page=100'.replace('PAGE_NUMBER', page)
+		const url = 'https://crossorigin.me/https://bodegonline.net/shop/page/PAGE_NUMBER/?per_page=100'.replace('PAGE_NUMBER', page)
 		try {
 			const response = await fetch(url)
 			const formattedData = formatRedemercaData(response)

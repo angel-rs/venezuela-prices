@@ -1,0 +1,12 @@
+.pretty-footer {
+  min-height: 60px;
+  margin-right: 16px;
+}
+
+.pretty-footer .footer-text {
+  display: flex;
+  flex-direction: row;
+  line-height: 1.5em;
+  letter-spacing: 2px;
+  flex-wrap: wrap;
+}

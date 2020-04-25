@@ -1,0 +1,9 @@
+.pretty-content {
+  min-height: calc(100vh - (60px * 2) - 1rem - 1px);
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
