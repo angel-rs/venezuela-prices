@@ -1,11 +1,9 @@
-import { scrapRedemerca } from './redemerca'
-import { scrapBodegon } from './bodegon'
+import { scrapRedemerca } from "./redemerca";
+import { scrapBodegon } from "./bodegon";
 
-export const scrap = async () => {
-	const response = await Promise.all([
-		// scrapBodegon(),
-		scrapRedemerca(),
-	])
-
-	return response;
-}
+export const scrap = async (updateProducts) => {
+  await Promise.all([
+    scrapBodegon(updateProducts),
+    // scrapRedemerca(),
+  ]);
+};

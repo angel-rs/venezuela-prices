@@ -1,4 +1,4 @@
-# Venezuela Prices
+# Venezuela Product Prices
 
 An open catalog of product prices across multiple websites:
 - [bodegonline.net](https://bodegonline.net/)

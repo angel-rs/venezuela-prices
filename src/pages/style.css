@@ -13,6 +13,8 @@
 
 .list > .product-list {
 	flex-direction: column;
+	max-width: 800px;
+	align-self: center;
 }
 
 .grid > .product-list {

@@ -1,46 +1,63 @@
-import React from "react";
-import {
-  Box,
-  Image,
-  Skeleton
-} from "@chakra-ui/core";
+import React, { useState } from "react"
+import { Box, Link, Image, Skeleton, Badge } from "@chakra-ui/core"
 
-import './style.css'
+import "./style.css";
 
 export const Product = props => {
-  const property = {
-    imageUrl: "https://bodegonline.net/wp-content/uploads/2019/12/HYRTTH.jpg",
-    imageAlt: "Harina pan",
-    title: "Harina pan",
-    formattedPrice: "1,900.00",
-  };
+  const { product, layout } = props;
+  const [imgStyle, setImgStyle] = useState({ display: 'none' })
+  const [imageIsReady, setImageIsReady] = useState(false);
 
-  if (false) {
+  if (!product) {
     return <Skeleton className="product-card" />;
   }
 
   return (
-    <Box className="product-card" borderWidth="1px">
-      <Image src={property.imageUrl} alt={property.imageAlt} width="100%" height="100%" />
+    <Link href={product.href || "#"} isExternal>
+      <Box className="product-card" borderWidth="1px">
+        {!imageIsReady && (
+          <Skeleton
+            width={layout === 'grid' ? "200px" : '110px'}
+            height="200px"
+            style={{
+              display: "flex",
+              alignSelf: "center",
+              padding: "3em 0",
+              margin: "2em 0"
+            }}
+          />
+        )}
+        <Image
+          src={product.image}
+          alt={product.name}
+          style={imgStyle}
+          onLoad={() => {
+            setImageIsReady(true)
+            setImgStyle({})
+          }}
+        />
 
-      <Box className="product-info">
-        <Box
-          mt="1"
-          fontWeight="semibold"
-          as="h4"
-          lineHeight="tight"
-          isTruncated
-        >
-          {property.title}{' '}
-        </Box>
-
-        <Box>
-          {property.formattedPrice}
-          <Box as="span" color="gray.600" fontSize="sm">
-            Bs
+        <Box className="product-info">
+          <Box
+            mt="1"
+            fontWeight="semibold"
+            as="h4"
+            lineHeight="tight"
+            isTruncated
+          >
+            {product.name}{" "}
           </Box>
+
+          <Box>
+            {product.price.replace("Bs", "")}
+            <Box as="span" color="gray.600" fontSize="sm">
+              Bs
+            </Box>
+          </Box>
+
+          <Badge>{product.from}</Badge>
         </Box>
       </Box>
-    </Box>
+    </Link>
   );
 };
