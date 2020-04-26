@@ -17,8 +17,8 @@ export const Product = props => {
       <Box className="product-card" borderWidth="1px">
         {!imageIsReady && (
           <Skeleton
-            width={layout === 'grid' ? "200px" : '110px'}
-            height="200px"
+            width={layout === 'grid' ? "200px" : '125px'}
+            height={layout === 'grid' ? "200px" : '110px'}
             style={{
               display: "flex",
               alignSelf: "center",

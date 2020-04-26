@@ -54,7 +54,7 @@
 }
 
 .list > .product-list > a > .product-card > .product-info {
-	margin-left: 1em;
+	margin: auto 1.2em;
 }
 
 .list > .product-list > a > .product-card > img {

@@ -6,13 +6,11 @@ import App from './App';
 import theme from './theme'
 
 ReactDOM.render(
-  <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <ColorModeProvider>
-        <CSSReset />
-        <App />
-      </ColorModeProvider>
-    </ThemeProvider>
-  </React.StrictMode>,
+  <ThemeProvider theme={theme}>
+    <ColorModeProvider>
+      <CSSReset />
+      <App />
+    </ColorModeProvider>
+  </ThemeProvider>,
   document.getElementById('root')
 );

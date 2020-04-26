@@ -17,11 +17,12 @@ const formatRedemercaData = (htmlString) => {
 	return products
 }
 
-export const scrapRedemerca = async () => {
+export const scrapRedemerca = async (updateProducts) => {
 	const url = `${Config.proxy}https://www.redemerca.com/Productos/Listado`
 	const response = await axios.get(url)
-	console.log(response)
-	return response;
-	// const products = formatRedemercaData(response);
-	// return products
+	const formattedData = formatRedemercaData(response.data);
+	updateProducts(prevProducts => [
+		...prevProducts,
+		...formattedData
+	])
 }

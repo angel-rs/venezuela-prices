@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Text, Spinner, Box } from "@chakra-ui/core";
+import { FiWifiOff } from 'react-icons/fi'
 import LazyLoad from 'react-lazyload'
 
 import { Layout, Product, SearchBar } from "src/components";
@@ -9,11 +10,11 @@ import "./style.css";
 
 export const Home = () => {
   const [products, setProducts] = useState([]);
+	const [error, setError] = useState(false)
 	const [finishedLoading, setFinishedLoading] = useState(false);
   const [layout, setLayout] = useState(
     localStorage.getItem("layout") || "grid"
   );
-  const [isSearching, setIsSearching] = useState(false);
   const [search, setSearch] = useState("");
 
   const toggleLayout = () => {
@@ -27,13 +28,31 @@ export const Home = () => {
   };
 
   useEffect(() => {
-    scrap(setProducts).then(() => setFinishedLoading(true));
+    scrap(setProducts).then(() => setFinishedLoading(true)).catch(() => {
+			setError(true)
+			setFinishedLoading(true)
+		});
   }, []);
 
   const headerProps = {
     layout,
     toggleLayout
   };
+
+	if (error) {
+		return (
+      <Layout
+        center
+        style={{ flexDirection: "column" }}
+        headerProps={headerProps}
+      >
+				<FiWifiOff color="red" />
+				<br />
+        <Text>Parece ser que no tiene conexión a internet</Text>
+				<Text>Intente de nuevo más tarde</Text>
+      </Layout>
+    );
+	}
 
   if (!products.length) {
     return (
@@ -63,7 +82,7 @@ export const Home = () => {
     .filter(filterBySearch)
     .map((product, index) => (
 			<LazyLoad height={layout === 'grid' ? 300 : 112} offset={200} once>
-      	<Product key={product.href} layout={layout} product={product} isLoaded={!isSearching} />
+      	<Product key={product.href} layout={layout} product={product} />
 			</LazyLoad>
     ));
 
